@@ -10,7 +10,7 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/first',
       name: 'First',
       component: First,
       meta: {
@@ -18,7 +18,7 @@ export default new Router({
       }
     },
     {
-        path: '/index',
+        path: '/',
         name: 'Index',
         component: Index,
         meta: {

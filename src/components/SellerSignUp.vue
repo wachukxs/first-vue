@@ -80,8 +80,8 @@ switchSignupVisibility() {
         this.issue = "Enter correct email please."
       } else {
         this.signupbtn = 'loading...'
-        axios.post('https://shukran-api.herokuapp.com/api/myprofile/', {
-           lastname: this.lastname.toLowerCase().trim()
+        axios.post('https://shukran-api.herokuapp.com/api/myprofile/', { // sleepy-forest-75737
+           lastname: this.lastname.toLowerCase().trim() // pacific-hamlet-90419 // using
         }).then(res => {
           if (res.data.length >= 1) {
             console.log('lastname taken')
