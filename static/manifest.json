@@ -1,0 +1,16 @@
+{
+    "name": "Jiji-Clone for Crop2Cash",
+    "short_name": "Jiji-Clone",
+    "icons": [
+      {
+        "src": "/static/images/logo.png",
+        "sizes": "200x200",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#fcfcfc"
+  }
+  
