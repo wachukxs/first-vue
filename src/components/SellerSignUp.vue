@@ -1,5 +1,5 @@
 <template>
-    <div class="container uk-margin uk-margin-left">
+    <div class="container uk-margin uk-margin-left uk-text-center">
         <form class="uk-form-stacked">
 
             <div class="uk-margin">
@@ -24,7 +24,7 @@
             </div>
 
             <div class="uk-margin">
-                <label class="uk-form-label" for="form-stacked-text">State of origin</label> <!-- this should be a drop down, but time!! -->
+                <label class="uk-form-label" for="form-stacked-text">State of residence</label> <!-- this should be a drop down, but time!! -->
                 <div class="uk-form-controls">
                     <input class="uk-input uk-border-rounded uk-form-width-large" id="form-stacked-text" type="text" placeholder="Your email please">
                 </div>
@@ -41,7 +41,7 @@
             </div>
 
             <div class="uk-margin">
-                <button class="uk-button uk-button-default" @click="signup">Login</button>
+                <button class="uk-button uk-button-default" :disabled="fillAllFields" @click="signup">Login</button>
             </div>
 
         </form>
@@ -72,7 +72,9 @@ switchSignupVisibility() {
       this.loginPasswordIcon = this.loginPasswordIcon === "icon: lock" ? "icon: unlock" : "icon: lock";
       this.loginPasswordFieldType = this.loginPasswordFieldType === 'password' ? 'text' : 'password';
     },
-
+    fillAllFields() {
+      return this.state_of_residence !== '' || this.lastname !== '' || this.fullname !== '' || this.email !== '' || this.password !== ''
+    },
     signup(){
       if (this.lastname == '' || this.fullname == '' || this.email == '' || this.password == '') {
         this.issue = 'Please fill all fields.'
@@ -119,5 +121,9 @@ switchSignupVisibility() {
 </script>
 
 <style scoped>
+
+button[disabled="disabled"] {
+  cursor: not-allowed;
+}
 
 </style>

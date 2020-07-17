@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import First from '@/components/First'
 import Index from '@/components/Index'
 import SellerLogin from '@/components/SellerLogin'
+import SellerSignUp from '@/components/SellerSignUp'
 
 Vue.use(Router)
 
@@ -31,6 +32,14 @@ export default new Router({
         component: SellerLogin,
         meta: {
           title: 'Welcome again, login - Sellers - Jiji Clone'
+        }
+    },
+    {
+        path: '/seller-signup',
+        name: 'SellerSignUp',
+        component: SellerSignUp,
+        meta: {
+          title: 'Welcome again, signup - Sellers - Jiji Clone'
         }
     }
   ]
