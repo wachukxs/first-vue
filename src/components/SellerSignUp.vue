@@ -3,30 +3,30 @@
         <form class="uk-form-stacked">
 
             <div class="uk-margin">
-                <label class="uk-form-label" for="form-stacked-text">Email</label>
+                <label class="uk-form-label" for="e">Email</label>
                 <div class="uk-form-controls">
-                    <input class="uk-input uk-border-rounded uk-form-width-large" id="form-stacked-text" type="text" placeholder="Your email please">
+                    <input class="uk-input uk-border-rounded uk-form-width-large" id="e" v-model="email" type="text" placeholder="Your email please">
                 </div>
             </div>
 
             <div class="uk-margin">
-                <label class="uk-form-label" for="form-stacked-text">Firstname</label>
+                <label class="uk-form-label" for="fn">Firstname</label>
                 <div class="uk-form-controls">
-                    <input class="uk-input uk-border-rounded uk-form-width-large" id="form-stacked-text" type="text" placeholder="Your first name">
+                    <input class="uk-input uk-border-rounded uk-form-width-large" id="fn" v-model="firstname" type="text" placeholder="Your first name">
                 </div>
             </div>
 
             <div class="uk-margin">
-                <label class="uk-form-label" for="form-stacked-text">Lastname</label>
+                <label class="uk-form-label" for="ln">Lastname</label>
                 <div class="uk-form-controls">
-                    <input class="uk-input uk-border-rounded uk-form-width-large" id="form-stacked-text" type="text" placeholder="Your last name">
+                    <input class="uk-input uk-border-rounded uk-form-width-large" id="ln" v-model="lastname" type="text" placeholder="Your last name">
                 </div>
             </div>
 
             <div class="uk-margin">
-                <label class="uk-form-label" for="form-stacked-text">State of residence</label> <!-- this should be a drop down, but time!! -->
+                <label class="uk-form-label" for="sor">State of residence</label> <!-- this should be a drop down, but time!! -->
                 <div class="uk-form-controls">
-                    <input class="uk-input uk-border-rounded uk-form-width-large" id="form-stacked-text" type="text" placeholder="Your email please">
+                    <input class="uk-input uk-border-rounded uk-form-width-large" v-model="sellerStateOfResidence" id="sor" type="text" placeholder="Your state of residence">
                 </div>
             </div>
 
@@ -41,7 +41,8 @@
             </div>
 
             <div class="uk-margin">
-                <button class="uk-button uk-button-default" :disabled="fillAllFields" @click="signup">Login</button>
+              <!-- https://stackoverflow.com/a/56924316/9259701 -->
+                <button class="uk-button uk-button-default" type="button" :disabled="fillAllFields" @click="signup">Signup</button>
             </div>
 
         </form>
@@ -72,18 +73,15 @@ switchSignupVisibility() {
       this.loginPasswordIcon = this.loginPasswordIcon === "icon: lock" ? "icon: unlock" : "icon: lock";
       this.loginPasswordFieldType = this.loginPasswordFieldType === 'password' ? 'text' : 'password';
     },
-    fillAllFields() {
-      return this.sellerStateOfResidence !== '' || this.lastname !== '' || this.fullname !== '' || this.email !== '' || this.password !== ''
-    },
     signup(){
         this.signupbtn = 'loading...'
-        axios.get(`http://localhost:8000/api/sellers/?slug=${this.email}`, { // sleepy-forest-75737 // pacific-hamlet-90419 // using
+        axios.get(`http://localhost:8000/api/v1/sellers/?slug=${this.email}`, { // sleepy-forest-75737 // pacific-hamlet-90419 // using
             
         }).then(res => {
           if (res.data.objects.length > 0) {
             console.log('lastname taken', res)
           } else {
-            axios.post('http://localhost:8000/api/sellers/', {
+            axios.post('http://localhost:8000/api/v1/sellers/', {
               lastname: this.lastname.trim(), // pacific-hamlet-90419 // using
               firstname: this.firstname.trim(),
               state_of_residence: this.sellerStateOfResidence.trim(),
@@ -99,9 +97,15 @@ switchSignupVisibility() {
             })
           }
         }).catch( err => {
-          console.log(err)
+          console.log('signup err', err)
         })
     }
+  },
+  computed: {
+    
+    fillAllFields() {
+      return this.sellerStateOfResidence == '' || this.lastname == '' || this.firstname == '' || this.email == '' || this.password == ''
+    },
   }
 }
 </script>

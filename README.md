@@ -1,5 +1,5 @@
 # moz-todo-vue
-My break-in project into the vue.js multiverse. From [MDN Vue Intro](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Vue_getting_started)
+My fast-track project into the c2c challenge. Check it out [here](https://confident-corifd2b18.netlify.app/)
 
 ## Project setup
 ```
