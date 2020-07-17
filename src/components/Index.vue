@@ -8,6 +8,30 @@
                     </div>
                     <div class="uk-card-body">
                         <p>do eiusmod tempor incididunt.</p>
+
+                        <div class="uk-margin-small">
+                            <div class="uk-button-group">
+                                <button class="uk-button uk-button-secondary">Buy</button>
+                                <div uk-dropdown="mode: click">
+                                    Please provide your details.
+                                    <div>
+                                        <div class="uk-margin">
+                                            <input class="uk-input uk-form-width-medium" type="text" placeholder="Name" value="">
+                                        </div>
+                                        <div class="uk-margin">
+                                            <input class="uk-input uk-form-width-medium" type="text" placeholder="Email" value="">
+                                        </div>
+                                        <div class="uk-margin">
+                                            <input class="uk-input uk-form-width-medium" type="text" placeholder="Location" value="">
+                                        </div>
+                                        <div class="uk-margin"> <!-- after notifying seller, disable 'Buy' button -->
+                                            <button class="uk-button uk-button-default" type="button" >Notify Seller</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="uk-button uk-button-primary">8 others intrested</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -18,6 +42,13 @@
                     </div>
                     <div class="uk-card-body">
                         <p>do eiusmod tempor incididunt.</p>
+
+                        <div class="uk-margin-small">
+                            <div class="uk-button-group">
+                                <button class="uk-button uk-button-secondary">Buy</button>
+                                <button class="uk-button uk-button-primary">8 others intrested</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -28,6 +59,13 @@
                     </div>
                     <div class="uk-card-body">
                         <p>do eiusmod tempor incididunt.</p>
+
+                        <div class="uk-margin-small">
+                            <div class="uk-button-group">
+                                <button class="uk-button uk-button-secondary">Buy</button>
+                                <button class="uk-button uk-button-primary">8 others intrested</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,6 +77,13 @@
                     </div>
                     <div class="uk-card-body">
                         <p>do eiusmod tempor incididunt.</p>
+
+                        <div class="uk-margin-small">
+                            <div class="uk-button-group">
+                                <button class="uk-button uk-button-secondary">Buy</button>
+                                <button class="uk-button uk-button-primary">8 others intrested</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
