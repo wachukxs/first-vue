@@ -44,13 +44,13 @@
                                     Please provide your details.
                                     <div>
                                         <div class="uk-margin">
-                                            <input class="uk-input uk-form-width-medium" type="text" placeholder="Name" value="">
+                                            <input class="uk-input uk-form-width-medium" type="text" placeholder="Name" v-model="buyerName" value="">
                                         </div>
                                         <div class="uk-margin">
-                                            <input class="uk-input uk-form-width-medium" type="text" placeholder="Email" value="">
+                                            <input class="uk-input uk-form-width-medium" type="text" placeholder="Email" v-model="buyerEmail" value="">
                                         </div>
                                         <div class="uk-margin">
-                                            <input class="uk-input uk-form-width-medium" type="text" placeholder="Location" value="">
+                                            <input class="uk-input uk-form-width-medium" type="text" placeholder="Location" v-model="buyerStateOfResidence" value="">
                                         </div>
                                         <div class="uk-margin"> <!-- after notifying seller, disable 'Buy' button -->
                                             <button class="uk-button uk-button-default" type="button" @click="showIntrest">Notify Seller</button>
@@ -121,11 +121,48 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: 'Index',
+    data () {
+      return {
+        buyerEmail: '',
+        buyerName: '',
+        buyerStateOfResidence: '',
+        firstname:'',
+        password:'',
+        loginbtn:'Login',
+        lastname: '',
+        signupbtn: 'Signup',
+        email: '',
+        loginPasswordFieldType: 'password',
+        loginPasswordIcon: "icon: unlock",
+      }
+  },
     methods: {
         showInterest() {
             
+        },
+        getAllItems() { //
+            axios.get('http://localhost:8000/api/v1/items/?format=json&limit=0').then(data => {
+                console.log('items for sale', data)
+            }, err => {
+                console.error('err fetching items for sale', err)
+            })
+        }
+    },
+  mounted() {
+    
+  },
+    computed: {
+        filteresults: function (/* params */) {
+        let filtered = this.creators;
+      if (this.search) {
+        filtered = this.creators.filter(
+          m => m.username.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+        );
+      }
+      return filtered;
         }
     }
 }

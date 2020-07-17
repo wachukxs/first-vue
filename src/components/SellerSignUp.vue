@@ -54,18 +54,18 @@ import md5 from 'md5'
 export default {
     name: 'SellerSignUp',
     data () {
-    return {
-      loginbutton: true,
-      firstname:'',
-      password:'',
-      loginbtn:'Login',
-      lastname: '',
-      signupbtn: 'Signup',
-      state_of_residence: '',
-      email: '',
-      loginPasswordFieldType: 'password',
-      loginPasswordIcon: "icon: unlock",
-    }
+      return {
+        loginbutton: true,
+        firstname:'',
+        password:'',
+        loginbtn:'Login',
+        lastname: '',
+        signupbtn: 'Signup',
+        sellerStateOfResidence: '',
+        email: '',
+        loginPasswordFieldType: 'password',
+        loginPasswordIcon: "icon: unlock",
+      }
   },
   methods: {
 switchSignupVisibility() {
@@ -73,40 +73,27 @@ switchSignupVisibility() {
       this.loginPasswordFieldType = this.loginPasswordFieldType === 'password' ? 'text' : 'password';
     },
     fillAllFields() {
-      return this.state_of_residence !== '' || this.lastname !== '' || this.fullname !== '' || this.email !== '' || this.password !== ''
+      return this.sellerStateOfResidence !== '' || this.lastname !== '' || this.fullname !== '' || this.email !== '' || this.password !== ''
     },
     signup(){
-      if (this.lastname == '' || this.fullname == '' || this.email == '' || this.password == '') {
-        this.issue = 'Please fill all fields.'
-      } else if(!this.reg.test(this.email)){
-        this.issue = "Enter correct email please."
-      } else {
         this.signupbtn = 'loading...'
-        axios.post('https://shukran-api.herokuapp.com/api/myprofile/', { // sleepy-forest-75737
-           lastname: this.lastname.toLowerCase().trim() // pacific-hamlet-90419 // using
+        axios.get(`http://localhost:8000/api/sellers/?slug=${this.email}`, { // sleepy-forest-75737 // pacific-hamlet-90419 // using
+            
         }).then(res => {
-          if (res.data.length >= 1) {
-            console.log('lastname taken')
-              this.issue = 'lastname already taken...'
-              this.signupbtn = 'Signup'
+          if (res.data.objects.length > 0) {
+            console.log('lastname taken', res)
           } else {
-            axios.post('https://shukran-api.herokuapp.com/api/createaccount/', {
-              lastname: this.lastname.toLowerCase().trim(),
-              fullname: this.fullname,
-              email: this.email,
+            axios.post('http://localhost:8000/api/sellers/', {
+              lastname: this.lastname.trim(), // pacific-hamlet-90419 // using
+              firstname: this.firstname.trim(),
+              state_of_residence: this.sellerStateOfResidence.trim(),
+              email: this.email.trim(),
               password: md5(this.password)
             }).then(res => {
-              this.signupbtn = 'Signup'
-              if (res.data.message == "User's email exist") {
-                console.log('cannot register')
-                this.issue = "User's email exist"
-              } else {
-                console.log('registered')
-                sessionStorage.setItem('lastname', res.data.lastname)
-                sessionStorage.setItem('id', res.data._id)
-                sessionStorage.setItem('profile', JSON.stringify(res.data))
-                this.$router.push('/profile')
-              }
+                console.log('registered', res)
+                /* sessionStorage.setItem('id', res.data.id)
+                sessionStorage.setItem('profile', JSON.stringify(res.data)) */
+                this.$router.push('/seller-dashboard')
             }).catch( error => {
               console.log(error)
             })
@@ -114,7 +101,6 @@ switchSignupVisibility() {
         }).catch( err => {
           console.log(err)
         })
-      }
     }
   }
 }

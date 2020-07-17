@@ -4,6 +4,7 @@ import First from '@/components/First'
 import Index from '@/components/Index'
 import SellerLogin from '@/components/SellerLogin'
 import SellerSignUp from '@/components/SellerSignUp'
+import SellerDashboard from '@/components/SellerDashboard'
 
 Vue.use(Router)
 
@@ -40,6 +41,14 @@ export default new Router({
         component: SellerSignUp,
         meta: {
           title: 'Welcome again, signup - Sellers - Jiji Clone'
+        }
+    },
+    {
+        path: '/seller-dashboard',
+        name: 'SellerDashboard',
+        component: SellerDashboard,
+        meta: {
+          title: 'Welcome again, dashboard - Sellers - Jiji Clone'
         }
     }
   ]
