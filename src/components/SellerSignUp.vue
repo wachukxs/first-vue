@@ -89,8 +89,8 @@ switchSignupVisibility() {
               password: md5(this.password)
             }).then(res => {
                 console.log('registered', res)
-                /* sessionStorage.setItem('id', res.data.id)
-                sessionStorage.setItem('profile', JSON.stringify(res.data)) */
+                sessionStorage.setItem('seller-origin-state', this.sellerStateOfResidence.trim())
+                sessionStorage.setItem('seller-email', this.email.trim())
                 this.$router.push('/seller-dashboard')
             }).catch( error => {
               console.log(error)
